@@ -47,7 +47,6 @@ def sort():
 width, height = 660, 400
 
 window = Tk()
-window.iconbitmap('Bubble_icon.ico')
 window.title("Bubble Sorting Visualization")
 window.resizable(False, False)
 
