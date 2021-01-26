@@ -1,30 +1,36 @@
 from tkinter import *
 import random
 
+'''
+variables description:
+
+horizon -> the base of the line (x0) equal to x1 and width
+length  -> the length of each line (y1)
+lines   -> an array containing lengths of each line
+line    -> a single line in lines[]
+'''
+
 
 def generate():
 
-    canvas.delete("all")
-
-    lines = []
-    x0, y0 = width, height
+    canvas.delete('all')
+    
+    horizon, lines = width, []
     for _ in range(width):
-        y1 = random.randint(0, height)
-        canvas.create_line(x0, y0, x0, y1, fill="#0278D7", width=1)
-        lines.append(y1)    # Store line length in a list
-        x0 -= 1
+        length = random.randint(0, height)
+        canvas.create_line(horizon, height, horizon, length, fill="#0278D7", width=1)
+        lines.append(length)    # Store line length in a list
+        horizon -= 1
 
-    x0 = width
-
-    button['state'] = NORMAL
     button.configure(text="Sort", command=sort)
-    return lines, x0, y0
+    return lines, width
 
 
 def sort():
 
-    lines, x0, y0 = generate()
-    canvas.delete("all")
+    lines, horizon = generate()
+
+    canvas.delete('all')
     button['state'] = DISABLED
 
     # Bubble Sorting algorithm
@@ -35,10 +41,9 @@ def sort():
 
     # Visualizing the output
     for line in range(len(lines)):
-        canvas.create_line(x0, y0, x0, lines[line], fill="#0278D7", width=1)
-        x0 -= 1
-
+        canvas.create_line(horizon, height, horizon, lines[line], fill="#0278D7", width=1)
         canvas.update()
+        horizon -= 1
 
     button['state'] = NORMAL
     button.configure(text="Generate array", command=generate)
