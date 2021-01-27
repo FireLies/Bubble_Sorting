@@ -1,5 +1,5 @@
 from tkinter import *
-import random
+from random import randint
 
 '''
 variables description:
@@ -17,9 +17,9 @@ def generate():
 
     horizon, lines = width-1, []
     for _ in range(width):
-        length = random.randint(0, height)
+        length = randint(0, height)
         canvas.create_line(horizon, height, horizon, length, fill="#0278D7", width=1)
-        lines.append(length)    # Store line length in a list
+        lines.append(length)
         horizon -= 1
 
     button.configure(text="Sort", command=sort)
@@ -52,7 +52,6 @@ def sort():
 width, height = 760, 400
 
 window = Tk()
-window.iconbitmap('Bubble_icon.ico')
 window.title("Bubble Sorting Visualization")
 window.resizable(False, False)
 
