@@ -4,7 +4,7 @@ import random
 '''
 variables description:
 
-horizon -> the base of the line (x0) equal to x1 and width
+horizon -> the base of the line (x0) equal to x1 and width-1
 length  -> the length of each line (y1)
 lines   -> an array containing lengths of each line
 line    -> a single line in lines[]
@@ -14,8 +14,8 @@ line    -> a single line in lines[]
 def generate():
 
     canvas.delete('all')
-    
-    horizon, lines = width, []
+
+    horizon, lines = width-1, []
     for _ in range(width):
         length = random.randint(0, height)
         canvas.create_line(horizon, height, horizon, length, fill="#0278D7", width=1)
@@ -23,7 +23,7 @@ def generate():
         horizon -= 1
 
     button.configure(text="Sort", command=sort)
-    return lines, width
+    return lines, width-1
 
 
 def sort():
@@ -49,9 +49,10 @@ def sort():
     button.configure(text="Generate array", command=generate)
 
 
-width, height = 660, 400
+width, height = 760, 400
 
 window = Tk()
+window.iconbitmap('Bubble_icon.ico')
 window.title("Bubble Sorting Visualization")
 window.resizable(False, False)
 
